@@ -59,18 +59,39 @@ class Process():
                     self.abnormal_class[y] = random.randint(35, 39)
         print(self.abnormal_class, "\n\n")
 
-    def change_of_data_of_abnormal_group(self):
-        print("\n\nUse table with abnormal values of quantity members of group:\n\n")
+    # def change_of_data_of_abnormal_group(self):
+    #     print("\n\nUse table with abnormal values of quantity members of group:\n\n")
+    #     line = 2
+    #     column = 10
+    #     d = 3
+    #     p = 2
+    #     self.out_print_array(self.abnormal_group, line)
+    #     for x in range(line):
+    #         for y in range(column):
+    #             if self.abnormal_group[x][y] < 1 or self.abnormal_group[x][y] > 30:
+    #                 if self.abnormal_group[x][y] < 1:
+    #                     self.abnormal_group[x][y] = random.randint(2, 5)
+    #                 else:
+    #                     self.abnormal_group[x][y] = random.randint(25, 29)
+    #     self.out_print_array(self.abnormal_group, line)
+
+    def abnormal_data_group(self):
         line = 2
         column = 10
+        d = 3
+        p = 2
+        count_r = 1
         self.out_print_array(self.abnormal_group, line)
         for x in range(line):
-            for y in range(column):
-                if self.abnormal_group[x][y] < 1 or self.abnormal_group[x][y] > 30:
-                    if self.abnormal_group[x][y] < 1:
-                        self.abnormal_group[x][y] = random.randint(2, 5)
+            for y in range(column-1):
+                for count in range(y, column):
+                    if self.abnormal_group[x][y] + p == self.abnormal_group[x][count]:
+                        if count - d == y:
+                            print('nice data')
+                        else:
+                            self.abnormal_group[x][count] = self.abnormal_group[x][y] + p
                     else:
-                        self.abnormal_group[x][y] = random.randint(25, 29)
+                        self.abnormal_group[x][count] = self.abnormal_group[x][y] + p
         self.out_print_array(self.abnormal_group, line)
 
 
@@ -79,4 +100,4 @@ if __name__ == '__main__':
     start.cleaning()
     start.duplicate_changes()
     start.change_of_data_of_abnormal_class()
-    start.change_of_data_of_abnormal_group()
+    start.abnormal_data_group()
